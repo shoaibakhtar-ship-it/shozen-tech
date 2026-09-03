@@ -1,0 +1,71 @@
+# =========================
+# DEPENDENCIES
+# =========================
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# =========================
+# ENVIRONMENT / SECRETS
+# =========================
+.env
+.env.*
+!.env.example
+
+client/.env
+client/.env.*
+!client/.env.example
+
+server/.env
+server/.env.*
+!server/.env.example
+
+# =========================
+# BUILD OUTPUT
+# =========================
+dist/
+dist-ssr/
+client/dist/
+server/dist/
+
+# =========================
+# LOCAL UPLOADS
+# Cloudinary is now used
+# =========================
+uploads/
+server/uploads/
+
+# =========================
+# LOGS
+# =========================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# =========================
+# LOCAL FILES
+# =========================
+*.local
+
+# =========================
+# EDITORS
+# =========================
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# =========================
+# VERCEL
+# =========================
+.vercel/
