@@ -34,8 +34,20 @@ function InstagramIcon() {
       strokeLinejoin="round"
       aria-hidden="true"
     >
-      <rect x="3" y="3" width="18" height="18" rx="5" />
-      <circle cx="12" cy="12" r="4" />
+      <rect
+        x="3"
+        y="3"
+        width="18"
+        height="18"
+        rx="5"
+      />
+
+      <circle
+        cx="12"
+        cy="12"
+        r="4"
+      />
+
       <circle
         cx="17.5"
         cy="6.5"
@@ -78,67 +90,116 @@ function GithubIcon() {
 function Footer() {
   return (
     <footer className="border-t border-black/10 bg-white text-black">
-      <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
+      <div className="mx-auto max-w-[1320px] px-5 sm:px-6 lg:px-10">
 
-        {/* MAIN */}
-        <div className="grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.15fr_0.8fr_0.9fr_1.2fr] lg:gap-10 lg:py-20">
+        {/* =========================
+            MAIN FOOTER
+        ========================== */}
+        <div className="grid gap-10 py-12 md:grid-cols-2 md:gap-12 md:py-16 lg:grid-cols-[1.15fr_0.8fr_0.9fr_1.2fr] lg:gap-10 lg:py-20">
 
-          {/* BRAND */}
+          {/* =========================
+              BRAND
+          ========================== */}
           <div className="lg:border-r lg:border-black/10 lg:pr-10">
+
+            {/* RESPONSIVE LOGO */}
             <Link
               to="/"
               className="inline-flex items-center"
             >
-              <div className="relative h-[88px] w-[250px] overflow-hidden md:w-[280px]">
+              <div
+                className="
+                  relative
+                  h-[62px]
+                  w-[170px]
+                  overflow-hidden
+                  sm:h-[68px]
+                  sm:w-[185px]
+                  md:h-[78px]
+                  md:w-[210px]
+                  lg:h-[88px]
+                  lg:w-[200px]
+                "
+              >
                 <img
                   src={shozenLogo}
                   alt="SHOZEN TECH"
-                  className="absolute left-1/2 top-1/2 w-[470px] max-w-none -translate-x-1/2 -translate-y-1/2 object-contain md:w-[200px]"
+                  className="
+                    absolute
+                    left-1/2
+                    top-1/2
+                    w-[175px]
+                    max-w-none
+                    -translate-x-1/2
+                    -translate-y-1/2
+                    object-contain
+                    sm:w-[190px]
+                    md:w-[200px]
+                    lg:w-[200px]
+                  "
                 />
               </div>
             </Link>
 
-            <p className="mt-5 max-w-[290px] text-[15px] leading-7 text-black/55">
-              SHOZEN TECH builds modern websites, software products,
-              AI solutions and scalable digital systems for ambitious
+            <p className="mt-4 max-w-[290px] text-[14px] leading-6 text-black/55 sm:mt-5 sm:text-[15px] sm:leading-7">
+              SHOZEN TECH builds modern websites,
+              software products, AI solutions and
+              scalable digital systems for ambitious
               businesses.
             </p>
 
-            {/* SOCIAL */}
-            <div className="mt-7 flex items-center gap-3">
+            {/* =========================
+                SOCIAL LINKS
+            ========================== */}
+            <div className="mt-6 flex items-center gap-3 sm:mt-7">
+
+              {/* INSTAGRAM */}
               <a
-                href="#"
-                aria-label="Instagram"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-black/15 text-black transition-all duration-300 hover:border-[#ef0038] hover:bg-[#ef0038] hover:!text-white"
+                href="https://www.instagram.com/shozentech/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="SHOZEN TECH Instagram"
+                title="Instagram"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-black/15 text-black transition-all duration-300 hover:border-[#ef0038] hover:bg-[#ef0038] hover:!text-white sm:h-11 sm:w-11"
               >
                 <InstagramIcon />
               </a>
 
+              {/* LINKEDIN */}
               <a
-                href="#"
-                aria-label="LinkedIn"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-black/15 text-black transition-all duration-300 hover:border-[#ef0038] hover:bg-[#ef0038] hover:!text-white"
+                href="https://www.linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="SHOZEN TECH LinkedIn"
+                title="LinkedIn"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-black/15 text-black transition-all duration-300 hover:border-[#ef0038] hover:bg-[#ef0038] hover:!text-white sm:h-11 sm:w-11"
               >
                 <LinkedInIcon />
               </a>
 
+              {/* GITHUB */}
               <a
-                href="#"
-                aria-label="GitHub"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-black/15 text-black transition-all duration-300 hover:border-[#ef0038] hover:bg-[#ef0038] hover:!text-white"
+                href="https://github.com/shoaibakhtar-ship-it"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="SHOZEN TECH GitHub"
+                title="GitHub"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-black/15 text-black transition-all duration-300 hover:border-[#ef0038] hover:bg-[#ef0038] hover:!text-white sm:h-11 sm:w-11"
               >
                 <GithubIcon />
               </a>
             </div>
           </div>
 
-          {/* QUICK LINKS */}
+          {/* =========================
+              QUICK LINKS
+          ========================== */}
           <div>
-            <h3 className="text-[22px] font-bold tracking-[-0.03em]">
+            <h3 className="text-[20px] font-bold tracking-[-0.03em] sm:text-[22px]">
               Quick Links
             </h3>
 
-            <div className="mt-6 flex flex-col gap-3">
+            <div className="mt-5 flex flex-col gap-3 sm:mt-6">
               {quickLinks.map((item) => (
                 <Link
                   key={item.path}
@@ -156,13 +217,15 @@ function Footer() {
             </div>
           </div>
 
-          {/* SERVICES */}
+          {/* =========================
+              SERVICES
+          ========================== */}
           <div>
-            <h3 className="text-[22px] font-bold tracking-[-0.03em]">
+            <h3 className="text-[20px] font-bold tracking-[-0.03em] sm:text-[22px]">
               Our Services
             </h3>
 
-            <div className="mt-6 flex flex-col gap-3">
+            <div className="mt-5 flex flex-col gap-3 sm:mt-6">
               {services.map((service) => (
                 <Link
                   key={service}
@@ -175,28 +238,30 @@ function Footer() {
             </div>
           </div>
 
-          {/* CONTACT */}
+          {/* =========================
+              CONTACT
+          ========================== */}
           <div>
-            <h3 className="text-[22px] font-bold tracking-[-0.03em]">
+            <h3 className="text-[20px] font-bold tracking-[-0.03em] sm:text-[22px]">
               Contact Us
             </h3>
 
-            <p className="mt-6 max-w-[320px] text-[15px] leading-7 text-black/50">
-              Have an idea or project in mind? Tell us what you want to
-              build and we&apos;ll help you plan the right digital
-              solution.
+            <p className="mt-5 max-w-[320px] text-[14px] leading-6 text-black/50 sm:mt-6 sm:text-[15px] sm:leading-7">
+              Have an idea or project in mind? Tell us
+              what you want to build and we&apos;ll help
+              you plan the right digital solution.
             </p>
 
-            <div className="mt-7 space-y-3">
+            <div className="mt-6 space-y-3 sm:mt-7">
               <p className="text-sm font-semibold text-black">
                 Phone
               </p>
 
               <a
-                href="tel:9369893383"
+                href="tel:+919369893383"
                 className="block w-fit text-[15px] text-black/50 transition hover:text-[#ef0038]"
               >
-                9369893383
+                +91 9369893383
               </a>
 
               <p className="pt-2 text-sm font-semibold text-black">
@@ -211,10 +276,12 @@ function Footer() {
               </a>
             </div>
 
-            {/* FOOTER CTA */}
+            {/* =========================
+                FOOTER CTA
+            ========================== */}
             <Link
               to="/contact"
-              className="group mt-7 inline-flex items-center gap-3 rounded-full bg-black px-6 py-3 text-sm font-semibold !text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#ef0038] hover:!text-white"
+              className="group mt-6 inline-flex items-center gap-3 rounded-full bg-black px-6 py-3 text-sm font-semibold !text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#ef0038] hover:!text-white sm:mt-7"
             >
               <span className="!text-white">
                 Start a Project
@@ -228,14 +295,17 @@ function Footer() {
           </div>
         </div>
 
-        {/* COPYRIGHT */}
-        <div className="border-t border-black/10 py-7">
+        {/* =========================
+            COPYRIGHT
+        ========================== */}
+        <div className="border-t border-black/10 py-6 sm:py-7">
           <div className="flex flex-col gap-4 text-[12px] text-black/40 md:flex-row md:items-center md:justify-between">
             <p>
-              © {new Date().getFullYear()} SHOZEN TECH. All Rights Reserved.
+              © {new Date().getFullYear()} SHOZEN TECH.
+              All Rights Reserved.
             </p>
 
-            <div className="flex gap-5">
+            <div className="flex flex-wrap gap-x-5 gap-y-2">
               <a
                 href="#"
                 className="transition hover:text-[#ef0038]"
