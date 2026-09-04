@@ -1,6 +1,7 @@
 import {
   useCallback,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 
@@ -140,12 +141,54 @@ function Services() {
     };
   }, [fetchServices]);
 
+  const serviceSchema = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id":
+            "https://shozen-tech.vercel.app/services#webpage",
+          url:
+            "https://shozen-tech.vercel.app/services",
+          name:
+            "Services | SHOZEN TECH",
+          description:
+            "Explore SHOZEN TECH services including website development, app development, UI/UX design, AI solutions, automation and custom software development.",
+          isPartOf: {
+            "@id":
+              "https://shozen-tech.vercel.app/#website",
+          },
+          about: {
+            "@id":
+              "https://shozen-tech.vercel.app/#organization",
+          },
+        },
+        ...services.map((service) => ({
+          "@type": "Service",
+          name: service.title,
+          description:
+            service.description ||
+            `${service.title} service by SHOZEN TECH.`,
+          serviceType:
+            service.title,
+          provider: {
+            "@id":
+              "https://shozen-tech.vercel.app/#organization",
+          },
+        })),
+      ],
+    }),
+    [services]
+  );
+
   return (
     <div className="overflow-hidden bg-white text-[#111111]">
       <SEO
         title="Services | SHOZEN TECH"
         description="Explore SHOZEN TECH services including website development, app development, UI/UX design, AI solutions, automation and custom software development."
         path="/services"
+        structuredData={serviceSchema}
       />
       <section className="relative overflow-hidden bg-[#f3f3f3]">
         <div className="mx-auto min-h-[390px] max-w-[1500px] px-6 py-20 md:px-10 lg:px-14 lg:py-24">

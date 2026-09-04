@@ -13,15 +13,22 @@ function SEO({
   title = DEFAULT_TITLE,
   description = DEFAULT_DESCRIPTION,
   path = "/",
+  structuredData = null,
 }) {
   useEffect(() => {
     const canonicalUrl =
       `${SITE_URL}${path === "/" ? "/" : path}`;
 
-    // Page title
+    /* =========================
+       DOCUMENT TITLE
+    ========================= */
+
     document.title = title;
 
-    // Meta description
+    /* =========================
+       DESCRIPTION
+    ========================= */
+
     let descriptionTag =
       document.querySelector(
         'meta[name="description"]'
@@ -46,7 +53,10 @@ function SEO({
       description
     );
 
-    // Canonical URL
+    /* =========================
+       CANONICAL URL
+    ========================= */
+
     let canonicalTag =
       document.querySelector(
         'link[rel="canonical"]'
@@ -71,7 +81,10 @@ function SEO({
       canonicalUrl
     );
 
-    // Open Graph
+    /* =========================
+       OPEN GRAPH
+    ========================= */
+
     const setMetaProperty = (
       property,
       content
@@ -119,7 +132,15 @@ function SEO({
       "website"
     );
 
-    // Twitter / X
+    setMetaProperty(
+      "og:site_name",
+      "SHOZEN TECH"
+    );
+
+    /* =========================
+       TWITTER
+    ========================= */
+
     const setMetaName = (
       name,
       content
@@ -138,7 +159,9 @@ function SEO({
           name
         );
 
-        document.head.appendChild(tag);
+        document.head.appendChild(
+          tag
+        );
       }
 
       tag.setAttribute(
@@ -146,6 +169,11 @@ function SEO({
         content
       );
     };
+
+    setMetaName(
+      "twitter:card",
+      "summary_large_image"
+    );
 
     setMetaName(
       "twitter:title",
@@ -156,10 +184,117 @@ function SEO({
       "twitter:description",
       description
     );
+
+    /* =========================
+       ROBOTS
+    ========================= */
+
+    setMetaName(
+      "robots",
+      "index, follow"
+    );
+
+    /* =========================
+       STRUCTURED DATA
+    ========================= */
+
+    const schemaId =
+      "shozen-page-schema";
+
+    const oldSchema =
+      document.getElementById(
+        schemaId
+      );
+
+    if (oldSchema) {
+      oldSchema.remove();
+    }
+
+    let schema = structuredData;
+
+    if (path === "/") {
+      schema = {
+        "@context":
+          "https://schema.org",
+        "@graph": [
+          {
+            "@type":
+              "Organization",
+            "@id":
+              `${SITE_URL}/#organization`,
+            name:
+              "SHOZEN TECH",
+            url:
+              `${SITE_URL}/`,
+            description:
+              DEFAULT_DESCRIPTION,
+            slogan:
+              "Innovation Through Technology",
+            sameAs: [
+              "https://www.instagram.com/shozentech/",
+              "https://www.linkedin.com/",
+              "https://github.com/shoaibakhtar-ship-it",
+            ],
+          },
+          {
+            "@type":
+              "WebSite",
+            "@id":
+              `${SITE_URL}/#website`,
+            url:
+              `${SITE_URL}/`,
+            name:
+              "SHOZEN TECH",
+            description:
+              DEFAULT_DESCRIPTION,
+            publisher: {
+              "@id":
+                `${SITE_URL}/#organization`,
+            },
+            inLanguage:
+              "en",
+          },
+        ],
+      };
+    }
+
+    if (schema) {
+      const script =
+        document.createElement(
+          "script"
+        );
+
+      script.id = schemaId;
+      script.type =
+        "application/ld+json";
+
+      script.textContent =
+        JSON.stringify(schema);
+
+      document.head.appendChild(
+        script
+      );
+    }
+
+    /* =========================
+       CLEANUP
+    ========================= */
+
+    return () => {
+      const currentSchema =
+        document.getElementById(
+          schemaId
+        );
+
+      if (currentSchema) {
+        currentSchema.remove();
+      }
+    };
   }, [
     title,
     description,
     path,
+    structuredData,
   ]);
 
   return null;
