@@ -13,11 +13,12 @@ import ProjectDetails from "../pages/ProjectDetails";
 import About from "../pages/About";
 import Process from "../pages/Process";
 import Contact from "../pages/Contact";
+import PrivacyPolicy from "../pages/Privacy";
+import TermsAndConditions from "../pages/TermsAndConditions";
 
 function AppRoutes() {
   return (
     <Routes>
-      {/* PUBLIC WEBSITE */}
       <Route element={<MainLayout />}>
         <Route
           path="/"
@@ -36,9 +37,7 @@ function AppRoutes() {
 
         <Route
           path="/projects/:slug"
-          element={
-            <ProjectDetails />
-          }
+          element={<ProjectDetails />}
         />
 
         <Route
@@ -55,9 +54,18 @@ function AppRoutes() {
           path="/contact"
           element={<Contact />}
         />
+
+        <Route
+          path="/privacy-policy"
+          element={<PrivacyPolicy />}
+        />
+
+        <Route
+          path="/terms-and-conditions"
+          element={<TermsAndConditions />}
+        />
       </Route>
 
-      {/* OLD ADMIN URLS */}
       <Route
         path="/admin"
         element={
@@ -98,7 +106,6 @@ function AppRoutes() {
         }
       />
 
-      {/* UNKNOWN ROUTE */}
       <Route
         path="*"
         element={

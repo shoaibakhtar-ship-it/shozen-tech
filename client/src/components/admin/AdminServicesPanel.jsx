@@ -127,6 +127,15 @@ function AdminServicesPanel() {
     }
   };
 
+  const notifyServicesUpdated =
+    () => {
+      window.dispatchEvent(
+        new Event(
+          "shozen-services-updated"
+        )
+      );
+    };
+
   useEffect(() => {
     loadServices();
   }, []);
@@ -381,6 +390,8 @@ function AdminServicesPanel() {
 
         await loadServices();
 
+        notifyServicesUpdated();
+
         resetFormAfterSave();
       } catch (err) {
         console.error(
@@ -435,6 +446,8 @@ function AdminServicesPanel() {
                 service._id
             )
         );
+
+        notifyServicesUpdated();
       } catch (err) {
         console.error(
           "Service delete error:",
@@ -496,6 +509,8 @@ function AdminServicesPanel() {
                   : item
             )
         );
+
+        notifyServicesUpdated();
       } catch (err) {
         console.error(
           "Service status error:",
@@ -520,7 +535,6 @@ function AdminServicesPanel() {
 
   return (
     <div className="space-y-5">
-      {/* HEADER */}
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#ef0038]">
@@ -547,7 +561,6 @@ function AdminServicesPanel() {
         </button>
       </div>
 
-      {/* SEARCH */}
       <div className="flex gap-2">
         <div className="relative flex-1">
           <Search
@@ -626,7 +639,6 @@ function AdminServicesPanel() {
           </div>
         )}
 
-      {/* SERVICES LIST */}
       {!loading &&
         filteredServices.length >
           0 && (
@@ -799,7 +811,6 @@ function AdminServicesPanel() {
           </div>
         )}
 
-      {/* MODAL */}
       {modalOpen && (
         <div className="fixed inset-0 z-[150] flex items-center justify-center bg-black/70 p-3 backdrop-blur-sm sm:p-5">
           <div className="flex max-h-[92vh] w-full max-w-xl flex-col overflow-hidden rounded-[24px] border border-white/10 bg-[#151515] shadow-2xl">
@@ -914,7 +925,6 @@ function AdminServicesPanel() {
                   </p>
                 </div>
 
-                {/* FEATURES */}
                 <div>
                   <label className="mb-2 block text-xs font-medium text-white/60">
                     Features
@@ -991,7 +1001,6 @@ function AdminServicesPanel() {
                   )}
                 </div>
 
-                {/* ACTIVE */}
                 <label className="flex cursor-pointer items-center justify-between rounded-xl border border-white/10 bg-white/[0.04] px-4 py-4">
                   <div>
                     <p className="text-sm font-medium text-white">

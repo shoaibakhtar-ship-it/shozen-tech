@@ -1,4 +1,8 @@
-import { useEffect, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import getMediaUrl from "../utils/getMediaUrl";
@@ -167,29 +171,37 @@ function Home() {
 
   const { openEnquiryModal } = useEnquiryModal();
 
-  /* =========================
+     /* =========================
      LOAD SERVICES
   ========================= */
 
-  useEffect(() => {
-    const fetchServices = async () => {
+  const fetchHomeServices =
+    useCallback(async () => {
       try {
         setServicesLoading(true);
         setServicesError("");
 
-        const response = await api.get("/services");
+        const response =
+          await api.get(
+            `/services?_=${Date.now()}`
+          );
 
-        const serviceData = Array.isArray(
-          response.data?.data
-        )
-          ? response.data.data
-          : [];
+        const serviceData =
+          Array.isArray(
+            response.data?.data
+          )
+            ? response.data.data
+            : [];
 
-        const activeServices = serviceData.filter(
-          (service) => service.active !== false
+        const activeServices =
+          serviceData.filter(
+            (service) =>
+              service.active !== false
+          );
+
+        setServices(
+          activeServices.slice(0, 4)
         );
-
-        setServices(activeServices.slice(0, 4));
       } catch (error) {
         console.error(
           "Home services fetch error:",
@@ -203,10 +215,28 @@ function Home() {
       } finally {
         setServicesLoading(false);
       }
-    };
+    }, []);
 
-    fetchServices();
-  }, []);
+  useEffect(() => {
+    fetchHomeServices();
+
+    const handleServicesUpdated =
+      () => {
+        fetchHomeServices();
+      };
+
+    window.addEventListener(
+      "shozen-services-updated",
+      handleServicesUpdated
+    );
+
+    return () => {
+      window.removeEventListener(
+        "shozen-services-updated",
+        handleServicesUpdated
+      );
+    };
+  }, [fetchHomeServices]);
 
   /* =========================
      LOAD PROJECTS
@@ -254,6 +284,22 @@ function Home() {
     };
 
     fetchProjects();
+
+    const handleProjectsUpdated = () => {
+      fetchProjects();
+    };
+
+    window.addEventListener(
+      "shozen-projects-updated",
+      handleProjectsUpdated
+    );
+
+    return () => {
+      window.removeEventListener(
+        "shozen-projects-updated",
+        handleProjectsUpdated
+      );
+    };
   }, []);
 
   return (

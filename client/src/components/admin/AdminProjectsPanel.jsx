@@ -115,6 +115,15 @@ function AdminProjectsPanel() {
     setTogglingId,
   ] = useState("");
 
+  const notifyProjectsUpdated =
+    () => {
+      window.dispatchEvent(
+        new Event(
+          "shozen-projects-updated"
+        )
+      );
+    };
+
   const handleUnauthorized = (
     err
   ) => {
@@ -159,7 +168,8 @@ function AdminProjectsPanel() {
       }
 
       setError(
-        err.response?.data?.message ||
+        err.response?.data
+          ?.message ||
           "Projects load failed."
       );
     } finally {
@@ -564,6 +574,8 @@ function AdminProjectsPanel() {
 
         await loadProjects();
 
+        notifyProjectsUpdated();
+
         if (
           imagePreview.startsWith(
             "blob:"
@@ -634,6 +646,8 @@ function AdminProjectsPanel() {
                 project._id
             )
         );
+
+        notifyProjectsUpdated();
       } catch (err) {
         console.error(
           "Project delete error:",
@@ -695,6 +709,8 @@ function AdminProjectsPanel() {
                   : item
             )
         );
+
+        notifyProjectsUpdated();
       } catch (err) {
         console.error(
           "Featured update error:",

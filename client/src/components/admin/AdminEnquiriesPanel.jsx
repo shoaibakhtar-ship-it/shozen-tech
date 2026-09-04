@@ -239,9 +239,7 @@ function AdminEnquiriesPanel() {
   const getStatusStyles = (
     status
   ) => {
-    if (
-      status === "completed"
-    ) {
+    if (status === "closed") {
       return "bg-emerald-500/10 text-emerald-300";
     }
 
@@ -251,13 +249,23 @@ function AdminEnquiriesPanel() {
       return "bg-blue-500/10 text-blue-300";
     }
 
-    if (
-      status === "in-progress"
-    ) {
-      return "bg-amber-500/10 text-amber-300";
+    return "bg-[#ef0038]/10 text-[#ff6c8e]";
+  };
+
+  const getStatusLabel = (
+    status
+  ) => {
+    if (status === "closed") {
+      return "Closed";
     }
 
-    return "bg-[#ef0038]/10 text-[#ff6c8e]";
+    if (
+      status === "contacted"
+    ) {
+      return "Contacted";
+    }
+
+    return "New";
   };
 
   const formatDate = (
@@ -431,7 +439,9 @@ function AdminEnquiriesPanel() {
                           status
                         )}`}
                       >
-                        {status}
+                        {getStatusLabel(
+                          status
+                        )}
                       </span>
                     </div>
 
@@ -477,7 +487,7 @@ function AdminEnquiriesPanel() {
                     {/* INFO */}
                     {(enquiry.service ||
                       enquiry.budget) && (
-                      <div className="mt-4 grid grid-cols-2 gap-2">
+                      <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
                         {enquiry.service && (
                           <div className="rounded-xl bg-white/[0.04] p-3">
                             <p className="text-[9px] uppercase tracking-wider text-white/30">
@@ -538,7 +548,7 @@ function AdminEnquiriesPanel() {
                         Status
                       </label>
 
-                      <div className="flex gap-2">
+                      <div className="flex flex-col gap-2 sm:flex-row">
                         <select
                           value={
                             status
@@ -566,58 +576,56 @@ function AdminEnquiriesPanel() {
                             Contacted
                           </option>
 
-                          <option value="in-progress">
-                            In Progress
-                          </option>
-
-                          <option value="completed">
-                            Completed
+                          <option value="closed">
+                            Closed
                           </option>
                         </select>
 
-                        {updatingId ===
-                          enquiry._id && (
-                          <div className="flex h-10 w-10 items-center justify-center">
-                            <Loader2
-                              size={
-                                16
-                              }
-                              className="animate-spin text-white/50"
-                            />
-                          </div>
-                        )}
-
-                        <button
-                          type="button"
-                          onClick={() =>
-                            handleDelete(
-                              enquiry
-                            )
-                          }
-                          disabled={
-                            deletingId ===
-                            enquiry._id
-                          }
-                          className="flex h-10 items-center gap-2 rounded-lg bg-red-500/10 px-3 text-[11px] font-medium text-red-300 transition hover:bg-red-500/20 disabled:opacity-50"
-                        >
-                          {deletingId ===
-                          enquiry._id ? (
-                            <Loader2
-                              size={
-                                14
-                              }
-                              className="animate-spin"
-                            />
-                          ) : (
-                            <Trash2
-                              size={
-                                14
-                              }
-                            />
+                        <div className="flex gap-2">
+                          {updatingId ===
+                            enquiry._id && (
+                            <div className="flex h-10 w-10 items-center justify-center">
+                              <Loader2
+                                size={
+                                  16
+                                }
+                                className="animate-spin text-white/50"
+                              />
+                            </div>
                           )}
 
-                          Delete
-                        </button>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              handleDelete(
+                                enquiry
+                              )
+                            }
+                            disabled={
+                              deletingId ===
+                              enquiry._id
+                            }
+                            className="flex h-10 items-center justify-center gap-2 rounded-lg bg-red-500/10 px-3 text-[11px] font-medium text-red-300 transition hover:bg-red-500/20 disabled:opacity-50"
+                          >
+                            {deletingId ===
+                            enquiry._id ? (
+                              <Loader2
+                                size={
+                                  14
+                                }
+                                className="animate-spin"
+                              />
+                            ) : (
+                              <Trash2
+                                size={
+                                  14
+                                }
+                              />
+                            )}
+
+                            Delete
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </article>

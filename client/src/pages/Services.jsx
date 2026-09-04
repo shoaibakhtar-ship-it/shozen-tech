@@ -1,18 +1,23 @@
-import { useEffect, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
+
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+
 import {
   ArrowRight,
   ArrowUpRight,
   Bot,
   Check,
-  ChevronDown,
   Code2,
   Database,
   Layers3,
+  Minus,
   MonitorSmartphone,
   Plus,
-  Minus,
   Server,
   Sparkles,
   Workflow,
@@ -20,41 +25,38 @@ import {
 
 import api from "../services/api";
 
-/* =====================================================
-   FAQ
-===================================================== */
-
 const faqs = [
   {
-    question: "What kind of websites does SHOZEN TECH develop?",
+    question:
+      "What kind of websites does SHOZEN TECH develop?",
     answer:
       "We build modern business websites, landing pages, custom web applications and scalable frontend experiences based on your actual requirements.",
   },
   {
-    question: "Do you also develop web applications?",
+    question:
+      "Do you also develop web applications?",
     answer:
       "Yes. We can build complete web applications including frontend interfaces, backend APIs, databases and third-party integrations.",
   },
   {
-    question: "Can you redesign my existing website?",
+    question:
+      "Can you redesign my existing website?",
     answer:
       "Yes. Existing websites can be redesigned and modernized while preserving important functionality and improving responsiveness, usability and overall experience.",
   },
   {
-    question: "Will my website work properly on mobile?",
+    question:
+      "Will my website work properly on mobile?",
     answer:
       "Yes. Responsive behavior is considered from the beginning so the website works properly across desktop, tablet and mobile devices.",
   },
   {
-    question: "Can you integrate APIs, AI or automation?",
+    question:
+      "Can you integrate APIs, AI or automation?",
     answer:
       "Yes. Depending on the project requirements, we can integrate third-party APIs, AI-powered features and workflow automation.",
   },
 ];
-
-/* =====================================================
-   ICON SELECTION
-===================================================== */
 
 const iconOptions = [
   Code2,
@@ -66,31 +68,46 @@ const iconOptions = [
   Workflow,
 ];
 
-/* =====================================================
-   PAGE
-===================================================== */
-
 function Services() {
-  const [services, setServices] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const [openFaq, setOpenFaq] = useState(0);
+  const [services, setServices] =
+    useState([]);
 
-  useEffect(() => {
-    const fetchServices = async () => {
+  const [loading, setLoading] =
+    useState(true);
+
+  const [error, setError] =
+    useState("");
+
+  const [openFaq, setOpenFaq] =
+    useState(0);
+
+  const fetchServices =
+    useCallback(async () => {
       try {
         setLoading(true);
         setError("");
 
-        const response = await api.get("/services");
+        const response =
+          await api.get("/services");
 
-        const data = response.data?.data || [];
+        const data =
+          Array.isArray(
+            response.data?.data
+          )
+            ? response.data.data
+            : [];
 
         setServices(
-          data.filter((service) => service.active !== false)
+          data.filter(
+            (service) =>
+              service.active !== false
+          )
         );
       } catch (err) {
-        console.error("Services fetch error:", err);
+        console.error(
+          "Services fetch error:",
+          err
+        );
 
         setError(
           err.response?.data?.message ||
@@ -99,22 +116,33 @@ function Services() {
       } finally {
         setLoading(false);
       }
-    };
+    }, []);
 
+  useEffect(() => {
     fetchServices();
-  }, []);
+
+    const handleServicesUpdated =
+      () => {
+        fetchServices();
+      };
+
+    window.addEventListener(
+      "shozen-services-updated",
+      handleServicesUpdated
+    );
+
+    return () => {
+      window.removeEventListener(
+        "shozen-services-updated",
+        handleServicesUpdated
+      );
+    };
+  }, [fetchServices]);
 
   return (
     <div className="overflow-hidden bg-white text-[#111111]">
-
-      {/* =====================================================
-          TOP HERO
-      ====================================================== */}
-
       <section className="relative overflow-hidden bg-[#f3f3f3]">
         <div className="mx-auto min-h-[390px] max-w-[1500px] px-6 py-20 md:px-10 lg:px-14 lg:py-24">
-
-          {/* TITLE */}
           <div className="text-center">
             <h1 className="text-[48px] font-semibold leading-none tracking-[-0.055em] sm:text-[58px] md:text-[66px]">
               Our{" "}
@@ -124,9 +152,7 @@ function Services() {
             </h1>
           </div>
 
-          {/* INTRO */}
           <div className="relative mx-auto mt-11 grid max-w-[930px] gap-7 md:grid-cols-[190px_1fr] md:items-start">
-
             <div className="flex items-center gap-3 pt-1">
               <span className="whitespace-nowrap text-[11px] font-bold uppercase tracking-[0.03em]">
                 WHAT WE DO
@@ -140,10 +166,8 @@ function Services() {
               and digital solutions designed around performance,
               usability and real business requirements.
             </p>
-
           </div>
 
-          {/* DECORATIVE ARROW */}
           <motion.div
             animate={{
               y: [0, 7, 0],
@@ -191,19 +215,12 @@ function Services() {
               />
             </svg>
           </motion.div>
-
         </div>
       </section>
 
-      {/* =====================================================
-          WHAT WE DO INTRO
-      ====================================================== */}
-
       <section className="bg-white pb-16 pt-20 md:pb-20 md:pt-24">
         <div className="mx-auto max-w-[1100px] px-6 text-center md:px-10">
-
           <div className="inline-flex items-center gap-2 rounded-full border border-[#ef0038]/20 bg-[#ef0038]/5 px-5 py-2.5">
-
             <Sparkles
               size={13}
               className="text-[#ef0038]"
@@ -212,7 +229,6 @@ function Services() {
             <span className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#ef0038]">
               Our Expertise
             </span>
-
           </div>
 
           <h2 className="mt-5 text-[40px] font-semibold tracking-[-0.045em] md:text-[52px]">
@@ -228,18 +244,12 @@ function Services() {
             solutions focused on performance, usability and long-term
             scalability.
           </p>
-
         </div>
       </section>
-
-      {/* =====================================================
-          LOADING
-      ====================================================== */}
 
       {loading && (
         <section className="bg-white pb-28">
           <div className="mx-auto max-w-[1050px] px-6 md:px-10">
-
             <div className="space-y-6">
               {[1, 2, 3].map((item) => (
                 <div
@@ -250,31 +260,21 @@ function Services() {
 
                   <div className="p-8 md:p-10">
                     <div className="h-6 w-24 rounded-full bg-black/[0.06]" />
-
                     <div className="mt-8 h-8 w-[60%] rounded-full bg-black/[0.06]" />
-
                     <div className="mt-5 h-4 w-full rounded-full bg-black/[0.05]" />
-
                     <div className="mt-3 h-4 w-[80%] rounded-full bg-black/[0.05]" />
                   </div>
                 </div>
               ))}
             </div>
-
           </div>
         </section>
       )}
 
-      {/* =====================================================
-          ERROR
-      ====================================================== */}
-
       {!loading && error && (
         <section className="bg-white pb-28">
           <div className="mx-auto max-w-[1050px] px-6 md:px-10">
-
             <div className="rounded-[28px] border border-[#ef0038]/20 bg-[#ef0038]/5 p-8 text-center md:p-12">
-
               <h3 className="text-[28px] font-semibold tracking-[-0.04em]">
                 Services load nahi hue.
               </h3>
@@ -285,30 +285,22 @@ function Services() {
 
               <button
                 type="button"
-                onClick={() => window.location.reload()}
+                onClick={fetchServices}
                 className="mt-7 rounded-full bg-[#ef0038] px-7 py-3 text-sm font-semibold !text-white transition hover:bg-black"
               >
                 Try Again
               </button>
-
             </div>
-
           </div>
         </section>
       )}
-
-      {/* =====================================================
-          EMPTY
-      ====================================================== */}
 
       {!loading &&
         !error &&
         services.length === 0 && (
           <section className="bg-white pb-28">
             <div className="mx-auto max-w-[1050px] px-6 md:px-10">
-
               <div className="rounded-[28px] border border-black/10 bg-[#f6f6f6] p-10 text-center md:p-14">
-
                 <h3 className="text-[30px] font-semibold tracking-[-0.04em]">
                   Services coming soon.
                 </h3>
@@ -317,32 +309,25 @@ function Services() {
                   Backend me active services add hote hi yahan
                   automatically show hongi.
                 </p>
-
               </div>
-
             </div>
           </section>
         )}
-
-      {/* =====================================================
-          SERVICES CARDS
-      ====================================================== */}
 
       {!loading &&
         !error &&
         services.length > 0 && (
           <section className="bg-white pb-28 md:pb-36">
             <div className="mx-auto max-w-[1050px] px-6 md:px-10">
-
               <div className="space-y-6">
-
                 {services.map((service, index) => {
                   const Icon =
                     iconOptions[
                       index % iconOptions.length
                     ];
 
-                  const imageFirst = index % 2 === 1;
+                  const imageFirst =
+                    index % 2 === 1;
 
                   return (
                     <motion.article
@@ -365,11 +350,6 @@ function Services() {
                       className="overflow-hidden rounded-[28px] border border-black/10 bg-white"
                     >
                       <div className="grid md:grid-cols-2">
-
-                        {/* =====================
-                            CONTENT
-                        ====================== */}
-
                         <div
                           className={`flex min-h-[380px] flex-col justify-center p-7 sm:p-9 md:p-10 lg:p-11 ${
                             imageFirst
@@ -377,7 +357,6 @@ function Services() {
                               : "md:order-1"
                           }`}
                         >
-
                           <span className="w-fit rounded-full bg-[#ef0038]/7 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.09em] text-[#ef0038]">
                             SERVICE{" "}
                             {String(index + 1).padStart(
@@ -394,33 +373,34 @@ function Services() {
                             {service.description}
                           </p>
 
-                          {service.features?.length >
-                            0 && (
-                            <div className="mt-6 grid gap-x-6 gap-y-3 border-t border-black/5 pt-5 sm:grid-cols-2">
+                          {Array.isArray(
+                            service.features
+                          ) &&
+                            service.features.length >
+                              0 && (
+                              <div className="mt-6 grid gap-x-6 gap-y-3 border-t border-black/5 pt-5 sm:grid-cols-2">
+                                {service.features
+                                  .slice(0, 6)
+                                  .map((feature) => (
+                                    <div
+                                      key={feature}
+                                      className="flex items-start gap-2 text-[12px] leading-5 text-black/70"
+                                    >
+                                      <span className="mt-[3px] flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#ef0038]/10">
+                                        <Check
+                                          size={10}
+                                          strokeWidth={3}
+                                          className="text-[#ef0038]"
+                                        />
+                                      </span>
 
-                              {service.features
-                                .slice(0, 6)
-                                .map((feature) => (
-                                  <div
-                                    key={feature}
-                                    className="flex items-start gap-2 text-[12px] leading-5 text-black/70"
-                                  >
-                                    <span className="mt-[3px] flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#ef0038]/10">
-                                      <Check
-                                        size={10}
-                                        strokeWidth={3}
-                                        className="text-[#ef0038]"
-                                      />
-                                    </span>
-
-                                    <span>
-                                      {feature}
-                                    </span>
-                                  </div>
-                                ))}
-
-                            </div>
-                          )}
+                                      <span>
+                                        {feature}
+                                      </span>
+                                    </div>
+                                  ))}
+                              </div>
+                            )}
 
                           <Link
                             to="/contact"
@@ -437,12 +417,7 @@ function Services() {
                               />
                             </span>
                           </Link>
-
                         </div>
-
-                        {/* =====================
-                            VISUAL
-                        ====================== */}
 
                         <div
                           className={`relative min-h-[330px] overflow-hidden bg-[#eeeeee] md:min-h-[430px] ${
@@ -451,8 +426,6 @@ function Services() {
                               : "md:order-2"
                           }`}
                         >
-
-                          {/* GRID */}
                           <div
                             className="
                               absolute
@@ -463,27 +436,20 @@ function Services() {
                             "
                           />
 
-                          {/* RED LIGHT */}
                           <div className="absolute -right-24 -top-24 h-[300px] w-[300px] rounded-full bg-[#ef0038]/18 blur-[90px]" />
 
-                          {/* BOTTOM GLOW */}
                           <div className="absolute -bottom-32 -left-20 h-[300px] w-[300px] rounded-full bg-black/10 blur-[100px]" />
 
-                          {/* CODE WINDOW */}
                           <div className="absolute left-[10%] top-[12%] h-[76%] w-[80%] rotate-[-3deg] overflow-hidden rounded-[26px] bg-[#151515] shadow-[0_30px_80px_rgba(0,0,0,0.18)] transition-transform duration-500 hover:rotate-0">
-
                             <div className="flex h-12 items-center border-b border-white/10 px-4">
-
                               <div className="flex gap-2">
                                 <span className="h-2 w-2 rounded-full bg-[#ef0038]" />
                                 <span className="h-2 w-2 rounded-full bg-white/20" />
                                 <span className="h-2 w-2 rounded-full bg-white/20" />
                               </div>
-
                             </div>
 
                             <div className="relative flex h-[calc(100%-48px)] items-center justify-center">
-
                               <div className="absolute inset-x-8 top-9 space-y-3 opacity-40">
                                 <div className="h-2 w-[68%] rounded-full bg-white/20" />
                                 <div className="h-2 w-[45%] rounded-full bg-[#ef0038]/50" />
@@ -502,41 +468,28 @@ function Services() {
                                 <div className="h-2 flex-1 rounded-full bg-white/10" />
                                 <div className="h-2 w-[25%] rounded-full bg-[#ef0038]/70" />
                               </div>
-
                             </div>
-
                           </div>
 
-                          {/* SERVICE NUMBER */}
                           <div className="absolute bottom-5 right-5 text-[60px] font-black tracking-[-0.08em] text-black/[0.06]">
                             {String(index + 1).padStart(
                               2,
                               "0"
                             )}
                           </div>
-
                         </div>
-
                       </div>
                     </motion.article>
                   );
                 })}
-
               </div>
-
             </div>
           </section>
         )}
 
-      {/* =====================================================
-          TECHNOLOGY STRIP
-      ====================================================== */}
-
       <section className="border-y border-black/10 bg-[#f4f4f4] py-20 md:py-24">
         <div className="mx-auto max-w-[1100px] px-6 md:px-10">
-
           <div className="grid gap-10 md:grid-cols-[0.7fr_1.3fr] md:items-center">
-
             <div>
               <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#ef0038]">
                 Technology Stack
@@ -553,7 +506,6 @@ function Services() {
             </div>
 
             <div className="flex flex-wrap gap-3">
-
               {[
                 "React",
                 "JavaScript",
@@ -573,21 +525,13 @@ function Services() {
                   {item}
                 </span>
               ))}
-
             </div>
-
           </div>
-
         </div>
       </section>
 
-      {/* =====================================================
-          FAQ
-      ====================================================== */}
-
       <section className="bg-white py-24 md:py-32">
         <div className="mx-auto max-w-[1050px] px-6 md:px-10">
-
           <h2 className="text-[35px] font-semibold tracking-[-0.045em] md:text-[44px]">
             Frequently Asked{" "}
             <span className="text-[#ef0038]">
@@ -596,24 +540,26 @@ function Services() {
           </h2>
 
           <div className="mt-8 space-y-3">
-
             {faqs.map((faq, index) => {
-              const isOpen = openFaq === index;
+              const isOpen =
+                openFaq === index;
 
               return (
                 <div
                   key={faq.question}
                   className="overflow-hidden rounded-[14px] border border-black/10 bg-white"
                 >
-
                   <button
                     type="button"
                     onClick={() =>
-                      setOpenFaq(isOpen ? -1 : index)
+                      setOpenFaq(
+                        isOpen
+                          ? -1
+                          : index
+                      )
                     }
                     className="flex w-full items-center justify-between gap-5 px-5 py-5 text-left md:px-6"
                   >
-
                     <span className="text-[14px] font-semibold md:text-[15px]">
                       {faq.question}
                     </span>
@@ -625,7 +571,6 @@ function Services() {
                         <Plus size={15} />
                       )}
                     </span>
-
                   </button>
 
                   <div
@@ -635,30 +580,20 @@ function Services() {
                         : "grid-rows-[0fr] opacity-0"
                     }`}
                   >
-
                     <div className="overflow-hidden">
                       <p className="max-w-[850px] px-5 pb-6 text-[14px] leading-7 text-black/50 md:px-6">
                         {faq.answer}
                       </p>
                     </div>
-
                   </div>
-
                 </div>
               );
             })}
-
           </div>
-
         </div>
       </section>
 
-      {/* =====================================================
-          FINAL CTA
-      ====================================================== */}
-
       <section className="relative overflow-hidden bg-white pb-28 pt-10 md:pb-36">
-
         <div
           className="
             pointer-events-none
@@ -673,7 +608,6 @@ function Services() {
         <div className="pointer-events-none absolute right-[-150px] top-[-100px] h-[450px] w-[450px] rounded-full bg-[#ef0038]/8 blur-[120px]" />
 
         <div className="relative mx-auto max-w-[850px] px-6 text-center md:px-10">
-
           <h2 className="text-[48px] font-semibold leading-[0.98] tracking-[-0.055em] sm:text-[55px] md:text-[66px]">
             Let&apos;s start your
             <br />
@@ -702,11 +636,8 @@ function Services() {
               className="!text-white transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
             />
           </Link>
-
         </div>
-
       </section>
-
     </div>
   );
 }

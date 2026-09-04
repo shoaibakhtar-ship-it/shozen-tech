@@ -91,18 +91,8 @@ function Footer() {
   return (
     <footer className="border-t border-black/10 bg-white text-black">
       <div className="mx-auto max-w-[1320px] px-5 sm:px-6 lg:px-10">
-
-        {/* =========================
-            MAIN FOOTER
-        ========================== */}
         <div className="grid gap-10 py-12 md:grid-cols-2 md:gap-12 md:py-16 lg:grid-cols-[1.15fr_0.8fr_0.9fr_1.2fr] lg:gap-10 lg:py-20">
-
-          {/* =========================
-              BRAND
-          ========================== */}
           <div className="lg:border-r lg:border-black/10 lg:pr-10">
-
-            {/* RESPONSIVE LOGO */}
             <Link
               to="/"
               className="inline-flex items-center"
@@ -148,12 +138,7 @@ function Footer() {
               businesses.
             </p>
 
-            {/* =========================
-                SOCIAL LINKS
-            ========================== */}
             <div className="mt-6 flex items-center gap-3 sm:mt-7">
-
-              {/* INSTAGRAM */}
               <a
                 href="https://www.instagram.com/shozentech/"
                 target="_blank"
@@ -165,7 +150,6 @@ function Footer() {
                 <InstagramIcon />
               </a>
 
-              {/* LINKEDIN */}
               <a
                 href="https://www.linkedin.com/"
                 target="_blank"
@@ -177,7 +161,6 @@ function Footer() {
                 <LinkedInIcon />
               </a>
 
-              {/* GITHUB */}
               <a
                 href="https://github.com/shoaibakhtar-ship-it"
                 target="_blank"
@@ -191,9 +174,6 @@ function Footer() {
             </div>
           </div>
 
-          {/* =========================
-              QUICK LINKS
-          ========================== */}
           <div>
             <h3 className="text-[20px] font-bold tracking-[-0.03em] sm:text-[22px]">
               Quick Links
@@ -217,9 +197,6 @@ function Footer() {
             </div>
           </div>
 
-          {/* =========================
-              SERVICES
-          ========================== */}
           <div>
             <h3 className="text-[20px] font-bold tracking-[-0.03em] sm:text-[22px]">
               Our Services
@@ -238,9 +215,6 @@ function Footer() {
             </div>
           </div>
 
-          {/* =========================
-              CONTACT
-          ========================== */}
           <div>
             <h3 className="text-[20px] font-bold tracking-[-0.03em] sm:text-[22px]">
               Contact Us
@@ -276,9 +250,6 @@ function Footer() {
               </a>
             </div>
 
-            {/* =========================
-                FOOTER CTA
-            ========================== */}
             <Link
               to="/contact"
               className="group mt-6 inline-flex items-center gap-3 rounded-full bg-black px-6 py-3 text-sm font-semibold !text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#ef0038] hover:!text-white sm:mt-7"
@@ -295,9 +266,6 @@ function Footer() {
           </div>
         </div>
 
-        {/* =========================
-            COPYRIGHT
-        ========================== */}
         <div className="border-t border-black/10 py-6 sm:py-7">
           <div className="flex flex-col gap-4 text-[12px] text-black/40 md:flex-row md:items-center md:justify-between">
             <p>
@@ -306,23 +274,22 @@ function Footer() {
             </p>
 
             <div className="flex flex-wrap gap-x-5 gap-y-2">
-              <a
-                href="#"
+              <Link
+                to="/privacy-policy"
                 className="transition hover:text-[#ef0038]"
               >
                 Privacy Policy
-              </a>
+              </Link>
 
-              <a
-                href="#"
+              <Link
+                to="/terms-and-conditions"
                 className="transition hover:text-[#ef0038]"
               >
                 Terms & Conditions
-              </a>
+              </Link>
             </div>
           </div>
         </div>
-
       </div>
     </footer>
   );
