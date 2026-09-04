@@ -16,6 +16,7 @@ import {
 
 import api from "../services/api";
 import { useEnquiryModal } from "../context/EnquiryModalContext";
+import SEO from "../components/common/SEO";
 
 /* =========================
    DATA
@@ -274,6 +275,11 @@ function Home() {
 
   return (
     <div className="overflow-hidden bg-white text-black">
+      <SEO
+        title="SHOZEN TECH | Website, App & Software Development"
+        description="SHOZEN TECH builds modern websites, web applications, custom software, AI solutions and automation systems for businesses."
+        path="/"
+      />
       {/* =========================
           HERO
       ========================== */}
