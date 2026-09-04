@@ -1,6 +1,12 @@
+import SEO from "../components/common/SEO";
 function TermsAndConditions() {
   return (
     <div className="bg-white text-[#111111]">
+      <SEO
+        title="Terms &amp; Conditions | SHOZEN TECH"
+        description="Read the SHOZEN TECH Terms and Conditions covering website use, services, project enquiries, intellectual property and third-party services."
+        path="/terms-and-conditions"
+      />
       <section className="bg-[#f2f2f2]">
         <div className="mx-auto max-w-[1100px] px-6 py-20 md:px-10 md:py-28">
           <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#ef0038]">

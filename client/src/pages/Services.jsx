@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 
 import api from "../services/api";
+import SEO from "../components/common/SEO";
 
 const faqs = [
   {
@@ -141,6 +142,11 @@ function Services() {
 
   return (
     <div className="overflow-hidden bg-white text-[#111111]">
+      <SEO
+        title="Services | SHOZEN TECH"
+        description="Explore SHOZEN TECH services including website development, app development, UI/UX design, AI solutions, automation and custom software development."
+        path="/services"
+      />
       <section className="relative overflow-hidden bg-[#f3f3f3]">
         <div className="mx-auto min-h-[390px] max-w-[1500px] px-6 py-20 md:px-10 lg:px-14 lg:py-24">
           <div className="text-center">

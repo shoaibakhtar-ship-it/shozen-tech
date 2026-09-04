@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 
 import api from "../services/api";
+import SEO from "../components/common/SEO";
 
 const initialForm = {
   name: "",
@@ -155,6 +156,11 @@ function Contact() {
   return (
     <div className="overflow-hidden bg-white text-[#111111]">
 
+      <SEO
+        title="Contact SHOZEN TECH | Start Your Project"
+        description="Contact SHOZEN TECH to discuss your website, app, software, AI solution or automation project."
+        path="/contact"
+      />
       {/* =====================================================
           HERO
       ====================================================== */}

@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 
 import { useEnquiryModal } from "../context/EnquiryModalContext";
+import SEO from "../components/common/SEO";
 
 const processSteps = [
   {
@@ -106,6 +107,11 @@ function Process() {
   return (
     <div className="overflow-hidden bg-white">
 
+      <SEO
+        title="Our Development Process | SHOZEN TECH"
+        description="See how SHOZEN TECH plans, designs, develops, tests and launches websites, applications and custom software solutions."
+        path="/process"
+      />
       <section className="bg-[#f2f2f2] py-20 md:py-24">
         <div className="mx-auto max-w-[1500px] px-6 text-center">
 

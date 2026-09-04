@@ -9,6 +9,7 @@ import {
 
 import api from "../services/api";
 import { useEnquiryModal } from "../context/EnquiryModalContext";
+import SEO from "../components/common/SEO";
 
 function GithubIcon() {
   return (
@@ -108,6 +109,15 @@ function ProjectDetails() {
 
   return (
     <div className="bg-white">
+      <SEO
+        title={`${project.title} | SHOZEN TECH`}
+        description={
+          project.shortDescription ||
+          project.description ||
+          `Explore ${project.title}, a project by SHOZEN TECH.`
+        }
+        path={`/projects/${project.slug}`}
+      />
 
       <section className="bg-[#eeeeee] py-16 md:py-24">
         <div className="mx-auto max-w-[1350px] px-6 md:px-10">

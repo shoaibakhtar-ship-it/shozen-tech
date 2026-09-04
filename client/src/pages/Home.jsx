@@ -1,8 +1,4 @@
-import {
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import getMediaUrl from "../utils/getMediaUrl";
@@ -171,37 +167,29 @@ function Home() {
 
   const { openEnquiryModal } = useEnquiryModal();
 
-     /* =========================
+  /* =========================
      LOAD SERVICES
   ========================= */
 
-  const fetchHomeServices =
-    useCallback(async () => {
+  useEffect(() => {
+    const fetchServices = async () => {
       try {
         setServicesLoading(true);
         setServicesError("");
 
-        const response =
-          await api.get(
-            `/services?_=${Date.now()}`
-          );
+        const response = await api.get("/services");
 
-        const serviceData =
-          Array.isArray(
-            response.data?.data
-          )
-            ? response.data.data
-            : [];
+        const serviceData = Array.isArray(
+          response.data?.data
+        )
+          ? response.data.data
+          : [];
 
-        const activeServices =
-          serviceData.filter(
-            (service) =>
-              service.active !== false
-          );
-
-        setServices(
-          activeServices.slice(0, 4)
+        const activeServices = serviceData.filter(
+          (service) => service.active !== false
         );
+
+        setServices(activeServices.slice(0, 4));
       } catch (error) {
         console.error(
           "Home services fetch error:",
@@ -215,28 +203,10 @@ function Home() {
       } finally {
         setServicesLoading(false);
       }
-    }, []);
-
-  useEffect(() => {
-    fetchHomeServices();
-
-    const handleServicesUpdated =
-      () => {
-        fetchHomeServices();
-      };
-
-    window.addEventListener(
-      "shozen-services-updated",
-      handleServicesUpdated
-    );
-
-    return () => {
-      window.removeEventListener(
-        "shozen-services-updated",
-        handleServicesUpdated
-      );
     };
-  }, [fetchHomeServices]);
+
+    fetchServices();
+  }, []);
 
   /* =========================
      LOAD PROJECTS

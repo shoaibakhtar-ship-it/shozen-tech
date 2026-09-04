@@ -17,6 +17,7 @@ import {
 
 import api from "../services/api";
 import { useEnquiryModal } from "../context/EnquiryModalContext";
+import SEO from "../components/common/SEO";
 
 function Projects() {
   const [projects, setProjects] =
@@ -86,6 +87,11 @@ function Projects() {
 
   return (
     <div className="overflow-hidden bg-white text-[#111111]">
+      <SEO
+        title="Projects &amp; Our Work | SHOZEN TECH"
+        description="Explore selected SHOZEN TECH projects including websites, applications, software systems and digital products built for real-world business use."
+        path="/projects"
+      />
       <section className="relative overflow-hidden bg-[#f2f2f2]">
         <div className="relative mx-auto min-h-[390px] max-w-[1500px] px-6 py-20 md:px-10 lg:px-14 lg:py-24">
           <div className="text-center">

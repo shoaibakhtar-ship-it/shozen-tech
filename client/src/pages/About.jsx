@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 
 import { useEnquiryModal } from "../context/EnquiryModalContext";
+import SEO from "../components/common/SEO";
 
 function About() {
   const { openEnquiryModal } =
@@ -18,6 +19,11 @@ function About() {
   return (
     <div className="overflow-hidden bg-white">
 
+      <SEO
+        title="About SHOZEN TECH | Innovation Through Technology"
+        description="Learn about SHOZEN TECH, a technology company focused on building modern websites, applications, software solutions and automation for businesses."
+        path="/about"
+      />
       {/* HERO */}
       <section className="relative bg-[#f2f2f2]">
         <div className="relative mx-auto min-h-[390px] max-w-[1500px] px-6 py-20 md:px-10 lg:px-14 lg:py-24">

@@ -1,6 +1,12 @@
+import SEO from "../components/common/SEO";
 function PrivacyPolicy() {
   return (
     <div className="bg-white text-[#111111]">
+      <SEO
+        title="Privacy Policy | SHOZEN TECH"
+        description="Read the SHOZEN TECH Privacy Policy and learn how enquiry and website information may be collected, used and protected."
+        path="/privacy-policy"
+      />
       <section className="bg-[#f2f2f2]">
         <div className="mx-auto max-w-[1100px] px-6 py-20 md:px-10 md:py-28">
           <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#ef0038]">
