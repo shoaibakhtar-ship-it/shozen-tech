@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const SITE_URL = "https://shozen-tech.vercel.app";
+const SITE_URL = "https://shozentech.vercel.app";
 
 const API_URL =
   process.env.VITE_API_URL ||

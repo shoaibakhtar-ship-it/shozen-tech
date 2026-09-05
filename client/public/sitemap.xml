@@ -1,53 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://shozen-tech.vercel.app/</loc>
+    <loc>https://shozentech.vercel.app/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://shozen-tech.vercel.app/services</loc>
+    <loc>https://shozentech.vercel.app/services</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://shozen-tech.vercel.app/projects</loc>
+    <loc>https://shozentech.vercel.app/projects</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://shozen-tech.vercel.app/about</loc>
+    <loc>https://shozentech.vercel.app/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shozen-tech.vercel.app/process</loc>
+    <loc>https://shozentech.vercel.app/process</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shozen-tech.vercel.app/contact</loc>
+    <loc>https://shozentech.vercel.app/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shozen-tech.vercel.app/privacy-policy</loc>
+    <loc>https://shozentech.vercel.app/privacy-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://shozen-tech.vercel.app/terms-and-conditions</loc>
+    <loc>https://shozentech.vercel.app/terms-and-conditions</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://shozen-tech.vercel.app/projects/nexora</loc>
+    <loc>https://shozentech.vercel.app/projects/nexora</loc>
     <lastmod>2026-09-04T06:18:16.902Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shozen-tech.vercel.app/projects/shozen-tech-business-website</loc>
+    <loc>https://shozentech.vercel.app/projects/shozen-tech-business-website</loc>
     <lastmod>2026-09-02T08:49:20.360Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

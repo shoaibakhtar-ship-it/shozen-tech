@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 const SITE_URL =
-  "https://shozen-tech.vercel.app";
+  "https://shozentech.vercel.app";
 
 const DEFAULT_TITLE =
   "SHOZEN TECH | Website, App & Software Development";

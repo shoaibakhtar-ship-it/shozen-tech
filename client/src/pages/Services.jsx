@@ -148,20 +148,20 @@ function Services() {
         {
           "@type": "WebPage",
           "@id":
-            "https://shozen-tech.vercel.app/services#webpage",
+            "https://shozentech.vercel.app/services#webpage",
           url:
-            "https://shozen-tech.vercel.app/services",
+            "https://shozentech.vercel.app/services",
           name:
             "Services | SHOZEN TECH",
           description:
             "Explore SHOZEN TECH services including website development, app development, UI/UX design, AI solutions, automation and custom software development.",
           isPartOf: {
             "@id":
-              "https://shozen-tech.vercel.app/#website",
+              "https://shozentech.vercel.app/#website",
           },
           about: {
             "@id":
-              "https://shozen-tech.vercel.app/#organization",
+              "https://shozentech.vercel.app/#organization",
           },
         },
         ...services.map((service) => ({
@@ -174,7 +174,7 @@ function Services() {
             service.title,
           provider: {
             "@id":
-              "https://shozen-tech.vercel.app/#organization",
+              "https://shozentech.vercel.app/#organization",
           },
         })),
       ],
