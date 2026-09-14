@@ -41,6 +41,12 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://shozentech.vercel.app/projects/ayesha-cake-studio</loc>
+    <lastmod>2026-09-14T07:16:06.017Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://shozentech.vercel.app/projects/nexora</loc>
     <lastmod>2026-09-04T06:18:16.902Z</lastmod>
     <changefreq>monthly</changefreq>
